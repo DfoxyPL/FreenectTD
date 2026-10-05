@@ -73,9 +73,11 @@ if [ ! -f "$WORK/libfreenect2-build/lib/libfreenect2.a" ]; then
         -DBUILD_SHARED_LIBS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_OPENNI2_DRIVER=OFF \
         -DENABLE_CXX11=ON -DENABLE_OPENGL=OFF -DENABLE_OPENCL=ON -DENABLE_CUDA=OFF \
         -DENABLE_VAAPI=OFF -DENABLE_TEGRAJPEG=OFF -DENABLE_PROFILING=OFF \
-        -DCMAKE_DISABLE_FIND_PACKAGE_TurboJPEG=ON -DCMAKE_DISABLE_FIND_PACKAGE_GLFW3=ON \
+        -DCMAKE_DISABLE_FIND_PACKAGE_TurboJPEG=ON \
         -DLibUSB_INCLUDE_DIRS="$PREFIX/include/libusb-1.0" \
-        -DLibUSB_LIBRARIES="$PREFIX/lib/libusb-1.0.a"
+        -DLibUSB_LIBRARIES="$PREFIX/lib/libusb-1.0.a" \
+        -DLibUSB_INCLUDE_DIR="$PREFIX/include/libusb-1.0" \
+        -DLibUSB_LIBRARY="$PREFIX/lib/libusb-1.0.a"
     cmake --build libfreenect2-build --target freenect2 -j"$(sysctl -n hw.ncpu)"
 fi
 
