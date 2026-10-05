@@ -1,0 +1,323 @@
+checking for x86_64-apple-darwin-gcc... clang -arch x86_64
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether clang -arch x86_64 accepts -g... yes
+checking for clang -arch x86_64 option to enable C11 features... none needed
+checking whether clang -arch x86_64 understands -c and -o together... yes
+checking for x86_64-apple-darwin-g++... no
+checking for x86_64-apple-darwin-c++... no
+checking for x86_64-apple-darwin-gpp... no
+checking for x86_64-apple-darwin-aCC... no
+checking for x86_64-apple-darwin-CC... no
+checking for x86_64-apple-darwin-cxx... no
+checking for x86_64-apple-darwin-cc++... no
+checking for x86_64-apple-darwin-cl.exe... no
+checking for x86_64-apple-darwin-FCC... no
+checking for x86_64-apple-darwin-KCC... no
+checking for x86_64-apple-darwin-RCC... no
+checking for x86_64-apple-darwin-xlC_r... no
+checking for x86_64-apple-darwin-xlC... no
+checking for x86_64-apple-darwin-clang++... no
+checking for g++... g++
+checking whether the compiler supports GNU C++... yes
+checking whether g++ accepts -g... yes
+checking for g++ option to enable C++11 features... none needed
+checking for inline... inline
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... ./install-sh -c -d
+checking for gawk... no
+checking for mawk... no
+checking for nawk... no
+checking for awk... awk
+checking whether make sets $(MAKE)... yes
+checking whether make supports the include directive... yes (GNU style)
+checking whether make supports nested variables... yes
+checking dependency style of clang -arch x86_64... gcc3
+checking dependency style of g++... gcc3
+checking build system type... aarch64-apple-darwin24.6.0
+checking host system type... x86_64-apple-darwin
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by clang -arch x86_64... /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+checking if the linker (/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) is GNU ld... no
+checking for BSD- or MS-compatible name lister (nm)... no
+checking for x86_64-apple-darwin-dumpbin... no
+checking for x86_64-apple-darwin-link... no
+checking for dumpbin... no
+checking for link... link -dump
+checking the name lister (nm) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 786432
+checking how to convert aarch64-apple-darwin24.6.0 file names to x86_64-apple-darwin format... func_convert_file_noop
+checking how to convert aarch64-apple-darwin24.6.0 file names to toolchain format... func_convert_file_noop
+checking for /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld option to reload object files... -r
+checking for x86_64-apple-darwin-file... no
+checking for file... file
+checking for x86_64-apple-darwin-objdump... no
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for x86_64-apple-darwin-dlltool... no
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for x86_64-apple-darwin-ar... no
+checking for ar... ar
+checking for archiver @FILE support... no
+checking for x86_64-apple-darwin-strip... no
+checking for strip... strip
+checking for x86_64-apple-darwin-ranlib... no
+checking for ranlib... ranlib
+checking command to parse nm output from clang -arch x86_64 object... ok
+checking for sysroot... no
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for x86_64-apple-darwin-mt... no
+checking for mt... no
+checking if : is a manifest tool... no
+checking for x86_64-apple-darwin-dsymutil... no
+checking for dsymutil... dsymutil
+checking for x86_64-apple-darwin-nmedit... no
+checking for nmedit... nmedit
+checking for x86_64-apple-darwin-lipo... no
+checking for lipo... lipo
+checking for x86_64-apple-darwin-otool... no
+checking for otool... otool
+checking for x86_64-apple-darwin-otool64... no
+checking for otool64... no
+checking for -single_module linker flag... ld: warning: -single_module is obsolete
+no
+checking for -exported_symbols_list linker flag... yes
+checking for -force_load linker flag... yes
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if clang -arch x86_64 supports -fno-rtti -fno-exceptions... yes
+checking for clang -arch x86_64 option to produce PIC... -fno-common -DPIC
+checking if clang -arch x86_64 PIC flag -fno-common -DPIC works... yes
+checking if clang -arch x86_64 static flag -static works... no
+checking if clang -arch x86_64 supports -c -o file.o... yes
+checking if clang -arch x86_64 supports -c -o file.o... (cached) yes
+checking whether the clang -arch x86_64 linker (/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... darwin dyld
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... no
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for ld used by g++... /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+checking if the linker (/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) is GNU ld... no
+checking whether the g++ linker (/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) supports shared libraries... yes
+checking for g++ option to produce PIC... -fno-common -DPIC
+checking if g++ PIC flag -fno-common -DPIC works... yes
+checking if g++ static flag -static works... no
+checking if g++ supports -c -o file.o... yes
+checking if g++ supports -c -o file.o... (cached) yes
+checking whether the g++ linker (/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... darwin dyld
+checking how to hardcode library paths into programs... immediate
+checking for x86_64-apple-darwin-windres... no
+checking for windres... no
+checking whether make supports nested variables... (cached) yes
+checking if clang -arch x86_64 supports -std=gnu11... yes
+checking operating system... Darwin/Mac OS X
+checking for nfds_t... yes
+checking for pipe2... no
+checking if clang -arch x86_64 recognizes -pthread... yes
+checking for library containing pthread_create... none required
+checking whether __atomic_load_n is supported... yes
+checking for pthread_threadid_np... yes
+checking for IOKit/usb/IOUSBHostFamilyDefinitions.h... yes
+checking for sys/time.h... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating libusb-1.0.pc
+config.status: creating Makefile
+config.status: creating libusb/Makefile
+config.status: creating examples/Makefile
+config.status: creating tests/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/doxygen.cfg
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+/Applications/Xcode_16.4.app/Contents/Developer/usr/bin/make  all-recursive
+Making all in libusb
+  CC       core.lo
+  CC       descriptor.lo
+  CC       hotplug.lo
+  CC       io.lo
+  CC       strerror.lo
+  CC       sync.lo
+  CC       os/threads_posix.lo
+  CC       os/events_posix.lo
+  CC       os/darwin_usb.lo
+  CCLD     libusb-1.0.la
+make[2]: Nothing to be done for `all-am'.
+Making install in libusb
+ .././install-sh -c -d '/Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libusb-1.0.la '/Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib'
+libtool: install: /usr/bin/install -c .libs/libusb-1.0.lai /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/libusb-1.0.la
+libtool: install: /usr/bin/install -c .libs/libusb-1.0.a /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/libusb-1.0.a
+libtool: install: chmod 644 /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/libusb-1.0.a
+libtool: install: ranlib /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/libusb-1.0.a
+ .././install-sh -c -d '/Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/include/libusb-1.0'
+ /usr/bin/install -c -m 644 libusb.h '/Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/include/libusb-1.0'
+make[2]: Nothing to be done for `install-exec-am'.
+ ./install-sh -c -d '/Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libusb-1.0.pc '/Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/pkgconfig'
+-- The C compiler identification is AppleClang 17.0.0.17000013
+-- The CXX compiler identification is AppleClang 17.0.0.17000013
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Operating system is Apple MacOS X
+-- Got System Processor arm64
+-- libfreenect will be installed to /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64
+-- Headers will be installed to /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/include/libfreenect
+-- Libraries will be installed to /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib
+-- Found libusb-1.0:
+--  - Includes: /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/include/libusb-1.0
+--  - Libraries: /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib/libusb-1.0.a
+-- Found Python: /opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14 (found version "3.14.7") found components: Interpreter
+-- Configuring done (2.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-build
+[ 11%] Building C object src/CMakeFiles/freenectstatic.dir/tilt.c.o
+[ 22%] Building C object src/CMakeFiles/freenectstatic.dir/cameras.c.o
+[ 33%] Building C object src/CMakeFiles/freenectstatic.dir/core.c.o
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/cameras.c:74:34: warning: unused variable 'invalid_mode' [-Wunused-const-variable]
+   74 | static const freenect_frame_mode invalid_mode = {0, (freenect_resolution)0, {(freenect_video_format)0}, 0, 0, 0, 0, 0, 0, 0};
+      |                                  ^~~~~~~~~~~~
+[ 44%] Building C object src/CMakeFiles/freenectstatic.dir/usb_libusb10.c.o
+[ 55%] Building C object src/CMakeFiles/freenectstatic.dir/flags.c.o
+[ 66%] Building C object src/CMakeFiles/freenectstatic.dir/registration.c.o
+1 warning generated.
+[ 77%] Building C object src/CMakeFiles/freenectstatic.dir/audio.c.o
+[ 88%] Building C object src/CMakeFiles/freenectstatic.dir/loader.c.o
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/loader.c:199:4: warning: variable 'fwfile' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+  199 |                         default: break;
+      |                         ^~~~~~~
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/loader.c:201:49: note: uninitialized use occurs here
+  201 |                 FN_INFO("Trying to open %s as firmware...\n", fwfile);
+      |                                                               ^~~~~~
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/freenect_internal.h:88:38: note: expanded from macro 'FN_INFO'
+   88 | #define FN_INFO(...) FN_LOG(LL_INFO, __VA_ARGS__)
+      |                                      ^~~~~~~~~~~
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/freenect_internal.h:82:47: note: expanded from macro 'FN_LOG'
+   82 | #define FN_LOG(level, ...) fn_log(ctx, level, __VA_ARGS__)
+      |                                               ^~~~~~~~~~~
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/loader.c:146:15: note: initialize the variable 'fwfile' to silence this warning
+  146 |                 char* fwfile;
+      |                             ^
+      |                              = NULL
+/Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect-0.7.5/src/loader.c:82:12: warning: unused function 'check_version_string' [-Wunused-function]
+   82 | static int check_version_string(fnusb_dev* dev) {
+      |            ^~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+[100%] Linking C static library ../lib/libfreenect.a
+[100%] Built target freenectstatic
+CMake Warning (deprecated) at CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- The C compiler identification is AppleClang 17.0.0.17000013
+-- The CXX compiler identification is AppleClang 17.0.0.17000013
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test COMPILER_SUPPORTS_CXX11
+-- Performing Test COMPILER_SUPPORTS_CXX11 - Success
+-- Performing Test COMPILER_SUPPORTS_CXX0X
+-- Performing Test COMPILER_SUPPORTS_CXX0X - Success
+-- Performing Test LIBFREENECT2_THREADING_STDLIB
+-- Performing Test LIBFREENECT2_THREADING_STDLIB - Success
+-- using stdlib as threading library
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+-- Checking for module 'libusb-1.0'
+--   Found libusb-1.0, version 1.0.29
+-- Looking for CL_VERSION_2_0
+-- Looking for CL_VERSION_2_0 - not found
+-- Looking for CL_VERSION_1_2
+-- Looking for CL_VERSION_1_2 - not found
+-- Looking for CL_VERSION_1_1
+-- Looking for CL_VERSION_1_1 - not found
+-- Looking for CL_VERSION_1_0
+-- Looking for CL_VERSION_1_0 - not found
+-- Found OpenCL: /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenCL.framework
+-- RPATH set to /Users/runner/work/FreenectTD/FreenectTD/build_deps/prefix-x86_64/lib
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- Linking with these libraries: 
+ LibUSB_LIBRARY-NOTFOUND
+ /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/VideoToolbox.framework
+ /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework
+ /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreMedia.framework
+ /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreVideo.framework
+ /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenCL.framework
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Feature list:
+--   CUDA    disabled
+--   CXX11    yes
+--   Examples    disabled
+--   OpenCL    yes
+--   OpenGL    disabled
+--   OpenNI2    disabled
+--   TegraJPEG    disabled
+--   Threading    std::thread
+--   TurboJPEG    no
+--   VAAPI    disabled
+--   VideoToolbox    yes
+-- Configuring done (4.0s)
+CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
+Please set them or make sure they are set and tested correctly in the CMake files:
+LibUSB_LIBRARY
+    linked by target "freenect2" in directory /Users/runner/work/FreenectTD/FreenectTD/build_deps/libfreenect2-0.2.0
+
+-- Generating done (0.0s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    CMAKE_DISABLE_FIND_PACKAGE_GLFW3
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
