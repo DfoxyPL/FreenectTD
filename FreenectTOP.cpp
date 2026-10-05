@@ -8,6 +8,7 @@
 #include "FreenectTOP.h"
 #include "ofxKinectExtras.h"
 #include "logger.h"
+#include <libusb.h>
 #include <atomic>
 #include <thread>
 #include <iostream>
@@ -543,6 +544,18 @@ void FreenectTOP::fn1_cleanupDevice() {
     LOG("[FreenectTOP] fn1_cleanupDevice: end");
 }
 
+// One libusb context shared by every libfreenect2::Freenect2 the plugin creates.
+// On macOS, libusb_init fails with LIBUSB_ERROR_OTHER while another context in
+// the process is being created or torn down, after which libfreenect2 silently
+// reports no devices. Created once and intentionally never destroyed.
+static void* fn2_sharedUsbContext() {
+    static libusb_context* ctx = [] {
+        libusb_context* c = nullptr;
+        return libusb_init(&c) == LIBUSB_SUCCESS ? c : nullptr;
+    }();
+    return ctx;
+}
+
 // Start the background enumeration thread for Kinect v2
 void FreenectTOP::fn2_startEnumThread() {
     LOG("[FreenectTOP] fn2_startEnumThread: fn2_enumThreadRunning before = " + std::to_string(fn2_enumThreadRunning.load()));
@@ -553,9 +566,7 @@ void FreenectTOP::fn2_startEnumThread() {
     fn2_enumThreadRunning = true;
     LOG("[FreenectTOP] fn2_startEnumThread: fn2_enumThreadRunning after = " + std::to_string(fn2_enumThreadRunning.load()));
     fn2_enumThread = std::thread([this]() {
-        // One context for the thread's lifetime: creating and destroying a libusb
-        // context every 100 ms fails with LIBUSB_ERROR_OTHER on macOS
-        libfreenect2::Freenect2 ctx;
+        libfreenect2::Freenect2 ctx(fn2_sharedUsbContext());
         while (fn2_enumThreadRunning.load()) {
             fn2_deviceAvailable = (ctx.enumerateDevices() > 0);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -601,7 +612,7 @@ bool FreenectTOP::fn2_initDevice() {
         FreenectTOP* self;
         ~EnumThreadResumer() { self->fn2_startEnumThread(); }
     } enumThreadResumer{this};
-    fn2_ctx = new libfreenect2::Freenect2();
+    fn2_ctx = new libfreenect2::Freenect2(fn2_sharedUsbContext());
     LOG(std::string("[FreenectTOP] fn2_initDevice: fn2_ctx after = ") + std::to_string(reinterpret_cast<uintptr_t>(fn2_ctx)));
     if (fn2_ctx->enumerateDevices() == 0) {
         errorString.clear();
