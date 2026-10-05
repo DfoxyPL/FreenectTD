@@ -10,273 +10,277 @@ __ZN11FreenectTOP14fn2_initDeviceEv:
 0000000000002241	movq	%rdi, %r14
 0000000000002244	leaq	0x6d8(%rdi), %rbx
 000000000000224b	movq	%rbx, %rdi
-000000000000224e	callq	0xfb9a2                         ## symbol stub for: __ZNSt3__15mutex4lockEv
+000000000000224e	callq	0xfb9b6                         ## symbol stub for: __ZNSt3__15mutex4lockEv
 0000000000002253	movq	%r14, %rdi
 0000000000002256	callq	__ZN11FreenectTOP19fn2_startEnumThreadEv ## FreenectTOP::fn2_startEnumThread()
 000000000000225b	movb	0x6b8(%r14), %al
 0000000000002262	testb	$0x1, %al
-0000000000002264	je	0x252b
+0000000000002264	je	0x23c2
 000000000000226a	movb	$0x1, %r15b
 000000000000226d	cmpq	$0x0, 0x678(%r14)
-0000000000002275	jne	0x252e
-000000000000227b	movl	$0x10, %edi
-0000000000002280	callq	0xfba08                         ## symbol stub for: __Znwm
-0000000000002285	movq	%rax, %r12
-0000000000002288	movq	%rax, %rdi
-000000000000228b	xorl	%esi, %esi
-000000000000228d	callq	__ZN12libfreenect29Freenect2C1EPv ## libfreenect2::Freenect2::Freenect2(void*)
-0000000000002292	leaq	0x678(%r14), %rax
-0000000000002299	movq	%rax, -0x38(%rbp)
-000000000000229d	movq	%r12, (%rax)
-00000000000022a0	movq	%r12, %rdi
-00000000000022a3	callq	__ZN12libfreenect29Freenect216enumerateDevicesEv ## libfreenect2::Freenect2::enumerateDevices()
-00000000000022a8	testl	%eax, %eax
-00000000000022aa	je	0x23a8
-00000000000022b0	movq	-0x38(%rbp), %rax
-00000000000022b4	movq	(%rax), %rsi
-00000000000022b7	leaq	-0x50(%rbp), %rdi
-00000000000022bb	callq	__ZN12libfreenect29Freenect228getDefaultDeviceSerialNumberEv ## libfreenect2::Freenect2::getDefaultDeviceSerialNumber()
-00000000000022c0	leaq	0x690(%r14), %r12
-00000000000022c7	testb	$0x1, 0x690(%r14)
-00000000000022cf	je	0x22dd
-00000000000022d1	movq	0x6a0(%r14), %rdi
-00000000000022d8	callq	0xfb9fc                         ## symbol stub for: __ZdlPv
-00000000000022dd	movq	-0x40(%rbp), %rax
-00000000000022e1	movq	%rax, 0x10(%r12)
-00000000000022e6	movups	-0x50(%rbp), %xmm0
-00000000000022ea	movups	%xmm0, (%r12)
-00000000000022ef	movl	$0x10, %edi
-00000000000022f4	callq	0xfba08                         ## symbol stub for: __Znwm
-00000000000022f9	movq	%rax, %r13
-00000000000022fc	movq	%rax, %rdi
-00000000000022ff	callq	__ZN12libfreenect217CpuPacketPipelineC1Ev ## libfreenect2::CpuPacketPipeline::CpuPacketPipeline()
-0000000000002304	movq	%r13, 0x688(%r14)
-000000000000230b	movq	0x678(%r14), %rdi
-0000000000002312	movq	%r12, %rsi
-0000000000002315	movq	%r13, %rdx
-0000000000002318	callq	__ZN12libfreenect29Freenect210openDeviceERKNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEPKNS_14PacketPipelineE ## libfreenect2::Freenect2::openDevice(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, libfreenect2::PacketPipeline const*)
-000000000000231d	movq	%rax, %r13
-0000000000002320	testq	%rax, %rax
-0000000000002323	je	0x23c5
-0000000000002329	leaq	0x680(%r14), %rax
-0000000000002330	movq	%rax, -0x30(%rbp)
-0000000000002334	movq	0x680(%r14), %r12
-000000000000233b	testq	%r12, %r12
-000000000000233e	jne	0x2374
-0000000000002340	movl	$0x2f0, %edi                    ## imm = 0x2F0
-0000000000002345	callq	0xfba08                         ## symbol stub for: __Znwm
-000000000000234a	movq	%rax, %r12
-000000000000234d	leaq	0x6a8(%r14), %rdx
-0000000000002354	leaq	0x6a9(%r14), %rcx
-000000000000235b	leaq	0x6aa(%r14), %r8
-0000000000002362	movq	%rax, %rdi
-0000000000002365	movq	%r13, %rsi
-0000000000002368	callq	__ZN17MyFreenect2DeviceC1EPN12libfreenect215Freenect2DeviceERNSt3__16atomicIbEES6_S6_ ## MyFreenect2Device::MyFreenect2Device(libfreenect2::Freenect2Device*, std::__1::atomic<bool>&, std::__1::atomic<bool>&, std::__1::atomic<bool>&)
-000000000000236d	movq	-0x30(%rbp), %rax
-0000000000002371	movq	%r12, (%rax)
-0000000000002374	movq	%r12, %rdi
-0000000000002377	callq	__ZN17MyFreenect2Device5startEv ## MyFreenect2Device::start()
-000000000000237c	testb	%al, %al
-000000000000237e	jne	0x252e
-0000000000002384	leaq	0x758(%r14), %rdi
-000000000000238b	testb	$0x1, 0x758(%r14)
-0000000000002393	jne	0x24a8
-0000000000002399	movw	$0x0, 0x758(%r14)
-00000000000023a3	jmp	0x24bd
-00000000000023a8	leaq	0x758(%r14), %rdi
-00000000000023af	testb	$0x1, 0x758(%r14)
-00000000000023b7	jne	0x23e2
-00000000000023b9	movw	$0x0, 0x758(%r14)
-00000000000023c3	jmp	0x23f7
-00000000000023c5	leaq	0x758(%r14), %rdi
-00000000000023cc	testb	$0x1, 0x758(%r14)
-00000000000023d4	jne	0x2423
-00000000000023d6	movw	$0x0, 0x758(%r14)
-00000000000023e0	jmp	0x2438
-00000000000023e2	movq	0x768(%r14), %rax
-00000000000023e9	movb	$0x0, (%rax)
-00000000000023ec	movq	$0x0, 0x760(%r14)
-00000000000023f7	leaq	0x118bad(%rip), %rsi            ## literal pool for: "No Kinect v2 devices found"
-00000000000023fe	movl	$0x1a, %edx
-0000000000002403	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
-0000000000002408	movq	-0x38(%rbp), %r14
-000000000000240c	movq	(%r14), %rdi
-000000000000240f	testq	%rdi, %rdi
-0000000000002412	je	0x2524
-0000000000002418	movq	(%rdi), %rax
-000000000000241b	callq	*0x8(%rax)
-000000000000241e	jmp	0x2524
-0000000000002423	movq	0x768(%r14), %rax
-000000000000242a	movb	$0x0, (%rax)
-000000000000242d	movq	$0x0, 0x760(%r14)
-0000000000002438	leaq	0x118bb2(%rip), %rsi            ## literal pool for: "Failed to open Kinect v2 device"
-000000000000243f	movl	$0x1f, %edx
-0000000000002444	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
-0000000000002449	movq	0x680(%r14), %r15
-0000000000002450	testq	%r15, %r15
-0000000000002453	je	0x2465
-0000000000002455	movq	%r15, %rdi
-0000000000002458	callq	__ZN17MyFreenect2DeviceD1Ev     ## MyFreenect2Device::~MyFreenect2Device()
-000000000000245d	movq	%r15, %rdi
-0000000000002460	callq	0xfb9fc                         ## symbol stub for: __ZdlPv
-0000000000002465	movq	0x688(%r14), %rdi
-000000000000246c	testq	%rdi, %rdi
-000000000000246f	je	0x2482
-0000000000002471	movq	(%rdi), %rax
-0000000000002474	callq	*0x8(%rax)
-0000000000002477	movq	$0x0, 0x688(%r14)
-0000000000002482	addq	$0x680, %r14                    ## imm = 0x680
-0000000000002489	movq	-0x38(%rbp), %r15
-000000000000248d	movq	(%r15), %rdi
-0000000000002490	testq	%rdi, %rdi
-0000000000002493	je	0x2524
-0000000000002499	movq	(%rdi), %rax
-000000000000249c	callq	*0x8(%rax)
-000000000000249f	movq	$0x0, (%r15)
-00000000000024a6	jmp	0x2524
-00000000000024a8	movq	0x768(%r14), %rax
-00000000000024af	movb	$0x0, (%rax)
-00000000000024b2	movq	$0x0, 0x760(%r14)
-00000000000024bd	leaq	0x118b4d(%rip), %rsi            ## literal pool for: "Failed to start Kinect v2 device"
-00000000000024c4	movl	$0x20, %edx
-00000000000024c9	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
-00000000000024ce	movq	-0x30(%rbp), %rax
-00000000000024d2	movq	(%rax), %r15
-00000000000024d5	testq	%r15, %r15
-00000000000024d8	je	0x24ea
-00000000000024da	movq	%r15, %rdi
-00000000000024dd	callq	__ZN17MyFreenect2DeviceD1Ev     ## MyFreenect2Device::~MyFreenect2Device()
-00000000000024e2	movq	%r15, %rdi
-00000000000024e5	callq	0xfb9fc                         ## symbol stub for: __ZdlPv
-00000000000024ea	movq	0x688(%r14), %rdi
-00000000000024f1	testq	%rdi, %rdi
-00000000000024f4	je	0x2507
-00000000000024f6	movq	(%rdi), %rax
-00000000000024f9	callq	*0x8(%rax)
-00000000000024fc	movq	$0x0, 0x688(%r14)
-0000000000002507	movq	-0x38(%rbp), %r14
-000000000000250b	movq	(%r14), %rdi
-000000000000250e	testq	%rdi, %rdi
-0000000000002511	je	0x2520
-0000000000002513	movq	(%rdi), %rax
-0000000000002516	callq	*0x8(%rax)
-0000000000002519	movq	$0x0, (%r14)
-0000000000002520	movq	-0x30(%rbp), %r14
-0000000000002524	movq	$0x0, (%r14)
-000000000000252b	xorl	%r15d, %r15d
-000000000000252e	movq	%rbx, %rdi
-0000000000002531	callq	0xfb9a8                         ## symbol stub for: __ZNSt3__15mutex6unlockEv
-0000000000002536	movl	%r15d, %eax
-0000000000002539	addq	$0x28, %rsp
-000000000000253d	popq	%rbx
-000000000000253e	popq	%r12
-0000000000002540	popq	%r13
-0000000000002542	popq	%r14
-0000000000002544	popq	%r15
-0000000000002546	popq	%rbp
-0000000000002547	retq
-0000000000002548	jmp	0x25d0
-000000000000254d	movq	%rax, -0x30(%rbp)
-0000000000002551	movq	%r13, %rdi
-0000000000002554	callq	0xfb9fc                         ## symbol stub for: __ZdlPv
-0000000000002559	jmp	0x255f
-000000000000255b	movq	%rax, -0x30(%rbp)
-000000000000255f	movq	-0x30(%rbp), %rdi
-0000000000002563	callq	0xfba2c                         ## symbol stub for: ___cxa_begin_catch
-0000000000002568	leaq	0x758(%r14), %rdi
-000000000000256f	testb	$0x1, 0x758(%r14)
-0000000000002577	jne	0x2585
-0000000000002579	movw	$0x0, 0x758(%r14)
-0000000000002583	jmp	0x259a
-0000000000002585	movq	0x768(%r14), %rax
-000000000000258c	movb	$0x0, (%rax)
-000000000000258f	movq	$0x0, 0x760(%r14)
-000000000000259a	leaq	0x118a25(%rip), %rsi            ## literal pool for: "Couldn't create CPU pipeline for Kinect v2"
-00000000000025a1	movl	$0x2a, %edx
-00000000000025a6	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
-00000000000025ab	callq	0xfba32                         ## symbol stub for: ___cxa_end_catch
-00000000000025b0	movq	0x688(%r14), %r13
-00000000000025b7	jmp	0x230b
-00000000000025bc	movq	%rax, %r14
-00000000000025bf	callq	0xfba32                         ## symbol stub for: ___cxa_end_catch
-00000000000025c4	jmp	0x25e2
-00000000000025c6	movq	%rax, %rdi
-00000000000025c9	callq	___clang_call_terminate
-00000000000025ce	jmp	0x25df
-00000000000025d0	movq	%rax, %r14
-00000000000025d3	movq	%r12, %rdi
-00000000000025d6	callq	0xfb9fc                         ## symbol stub for: __ZdlPv
-00000000000025db	jmp	0x25e2
-00000000000025dd	jmp	0x25df
-00000000000025df	movq	%rax, %r14
-00000000000025e2	movq	%rbx, %rdi
-00000000000025e5	callq	0xfb9a8                         ## symbol stub for: __ZNSt3__15mutex6unlockEv
-00000000000025ea	movq	%r14, %rdi
-00000000000025ed	callq	0xfb8d0                         ## symbol stub for: __Unwind_Resume
+0000000000002275	jne	0x2533
+000000000000227b	xorl	%eax, %eax
+000000000000227d	xchgb	%al, 0x6c8(%r14)
+0000000000002284	cmpq	$0x0, 0x6c0(%r14)
+000000000000228c	je	0x229a
+000000000000228e	leaq	0x6c0(%r14), %rdi
+0000000000002295	callq	0xfb9e0                         ## symbol stub for: __ZNSt3__16thread4joinEv
+000000000000229a	movl	$0x10, %edi
+000000000000229f	callq	0xfba1c                         ## symbol stub for: __Znwm
+00000000000022a4	movq	%rax, %r12
+00000000000022a7	movq	%rax, %rdi
+00000000000022aa	xorl	%esi, %esi
+00000000000022ac	callq	__ZN12libfreenect29Freenect2C1EPv ## libfreenect2::Freenect2::Freenect2(void*)
+00000000000022b1	leaq	0x678(%r14), %r13
+00000000000022b8	movq	%r12, (%r13)
+00000000000022bc	movq	%r12, %rdi
+00000000000022bf	callq	__ZN12libfreenect29Freenect216enumerateDevicesEv ## libfreenect2::Freenect2::enumerateDevices()
+00000000000022c4	testl	%eax, %eax
+00000000000022c6	je	0x23ca
+00000000000022cc	movq	(%r13), %rsi
+00000000000022d0	leaq	-0x48(%rbp), %rdi
+00000000000022d4	callq	__ZN12libfreenect29Freenect228getDefaultDeviceSerialNumberEv ## libfreenect2::Freenect2::getDefaultDeviceSerialNumber()
+00000000000022d9	leaq	0x690(%r14), %r15
+00000000000022e0	testb	$0x1, 0x690(%r14)
+00000000000022e8	je	0x22f6
+00000000000022ea	movq	0x6a0(%r14), %rdi
+00000000000022f1	callq	0xfba10                         ## symbol stub for: __ZdlPv
+00000000000022f6	movq	-0x38(%rbp), %rax
+00000000000022fa	movq	%rax, 0x10(%r15)
+00000000000022fe	movups	-0x48(%rbp), %xmm0
+0000000000002302	movups	%xmm0, (%r15)
+0000000000002306	movl	$0x10, %edi
+000000000000230b	callq	0xfba1c                         ## symbol stub for: __Znwm
+0000000000002310	movq	%rax, %r12
+0000000000002313	movq	%rax, %rdi
+0000000000002316	callq	__ZN12libfreenect217CpuPacketPipelineC1Ev ## libfreenect2::CpuPacketPipeline::CpuPacketPipeline()
+000000000000231b	movq	%r12, 0x688(%r14)
+0000000000002322	movq	0x678(%r14), %rdi
+0000000000002329	movq	%r15, %rsi
+000000000000232c	movq	%r12, %rdx
+000000000000232f	callq	__ZN12libfreenect29Freenect210openDeviceERKNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEPKNS_14PacketPipelineE ## libfreenect2::Freenect2::openDevice(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, libfreenect2::PacketPipeline const*)
+0000000000002334	movq	%rax, %r15
+0000000000002337	testq	%rax, %rax
+000000000000233a	je	0x23e7
+0000000000002340	leaq	0x680(%r14), %rax
+0000000000002347	movq	%rax, -0x30(%rbp)
+000000000000234b	movq	0x680(%r14), %r12
+0000000000002352	testq	%r12, %r12
+0000000000002355	jne	0x238b
+0000000000002357	movl	$0x2f0, %edi                    ## imm = 0x2F0
+000000000000235c	callq	0xfba1c                         ## symbol stub for: __Znwm
+0000000000002361	movq	%rax, %r12
+0000000000002364	leaq	0x6a8(%r14), %rdx
+000000000000236b	leaq	0x6a9(%r14), %rcx
+0000000000002372	leaq	0x6aa(%r14), %r8
+0000000000002379	movq	%rax, %rdi
+000000000000237c	movq	%r15, %rsi
+000000000000237f	callq	__ZN17MyFreenect2DeviceC1EPN12libfreenect215Freenect2DeviceERNSt3__16atomicIbEES6_S6_ ## MyFreenect2Device::MyFreenect2Device(libfreenect2::Freenect2Device*, std::__1::atomic<bool>&, std::__1::atomic<bool>&, std::__1::atomic<bool>&)
+0000000000002384	movq	-0x30(%rbp), %rax
+0000000000002388	movq	%r12, (%rax)
+000000000000238b	movq	%r12, %rdi
+000000000000238e	callq	__ZN17MyFreenect2Device5startEv ## MyFreenect2Device::start()
+0000000000002393	movb	$0x1, %r15b
+0000000000002396	testb	%al, %al
+0000000000002398	jne	0x252b
+000000000000239e	leaq	0x758(%r14), %rdi
+00000000000023a5	testb	$0x1, 0x758(%r14)
+00000000000023ad	jne	0x24b5
+00000000000023b3	movw	$0x0, 0x758(%r14)
+00000000000023bd	jmp	0x24ca
+00000000000023c2	xorl	%r15d, %r15d
+00000000000023c5	jmp	0x2533
+00000000000023ca	leaq	0x758(%r14), %rdi
+00000000000023d1	testb	$0x1, 0x758(%r14)
+00000000000023d9	jne	0x2404
+00000000000023db	movw	$0x0, 0x758(%r14)
+00000000000023e5	jmp	0x2419
+00000000000023e7	leaq	0x758(%r14), %rdi
+00000000000023ee	testb	$0x1, 0x758(%r14)
+00000000000023f6	jne	0x2442
+00000000000023f8	movw	$0x0, 0x758(%r14)
+0000000000002402	jmp	0x2457
+0000000000002404	movq	0x768(%r14), %rax
+000000000000240b	movb	$0x0, (%rax)
+000000000000240e	movq	$0x0, 0x760(%r14)
+0000000000002419	leaq	0x118bcf(%rip), %rsi            ## literal pool for: "No Kinect v2 devices found"
+0000000000002420	movl	$0x1a, %edx
+0000000000002425	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
+000000000000242a	movq	(%r13), %rdi
+000000000000242e	testq	%rdi, %rdi
+0000000000002431	je	0x2520
+0000000000002437	movq	(%rdi), %rax
+000000000000243a	callq	*0x8(%rax)
+000000000000243d	jmp	0x2520
+0000000000002442	movq	0x768(%r14), %rax
+0000000000002449	movb	$0x0, (%rax)
+000000000000244c	movq	$0x0, 0x760(%r14)
+0000000000002457	leaq	0x118bd7(%rip), %rsi            ## literal pool for: "Failed to open Kinect v2 device"
+000000000000245e	movl	$0x1f, %edx
+0000000000002463	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
+0000000000002468	movq	0x680(%r14), %r15
+000000000000246f	testq	%r15, %r15
+0000000000002472	je	0x2484
+0000000000002474	movq	%r15, %rdi
+0000000000002477	callq	__ZN17MyFreenect2DeviceD1Ev     ## MyFreenect2Device::~MyFreenect2Device()
+000000000000247c	movq	%r15, %rdi
+000000000000247f	callq	0xfba10                         ## symbol stub for: __ZdlPv
+0000000000002484	leaq	0x680(%r14), %r15
+000000000000248b	movq	$0x0, 0x688(%r14)
+0000000000002496	movq	0x678(%r14), %rdi
+000000000000249d	testq	%rdi, %rdi
+00000000000024a0	je	0x24b0
+00000000000024a2	movq	(%rdi), %rax
+00000000000024a5	callq	*0x8(%rax)
+00000000000024a8	movq	$0x0, (%r13)
+00000000000024b0	movq	%r15, %r13
+00000000000024b3	jmp	0x2520
+00000000000024b5	movq	0x768(%r14), %rax
+00000000000024bc	movb	$0x0, (%rax)
+00000000000024bf	movq	$0x0, 0x760(%r14)
+00000000000024ca	leaq	0x118b84(%rip), %rsi            ## literal pool for: "Failed to start Kinect v2 device"
+00000000000024d1	movl	$0x20, %edx
+00000000000024d6	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
+00000000000024db	movq	-0x30(%rbp), %rax
+00000000000024df	movq	(%rax), %r15
+00000000000024e2	testq	%r15, %r15
+00000000000024e5	je	0x24f7
+00000000000024e7	movq	%r15, %rdi
+00000000000024ea	callq	__ZN17MyFreenect2DeviceD1Ev     ## MyFreenect2Device::~MyFreenect2Device()
+00000000000024ef	movq	%r15, %rdi
+00000000000024f2	callq	0xfba10                         ## symbol stub for: __ZdlPv
+00000000000024f7	movq	$0x0, 0x688(%r14)
+0000000000002502	movq	0x678(%r14), %rdi
+0000000000002509	testq	%rdi, %rdi
+000000000000250c	je	0x251c
+000000000000250e	movq	(%rdi), %rax
+0000000000002511	callq	*0x8(%rax)
+0000000000002514	movq	$0x0, (%r13)
+000000000000251c	movq	-0x30(%rbp), %r13
+0000000000002520	movq	$0x0, (%r13)
+0000000000002528	xorl	%r15d, %r15d
+000000000000252b	movq	%r14, %rdi
+000000000000252e	callq	__ZN11FreenectTOP19fn2_startEnumThreadEv ## FreenectTOP::fn2_startEnumThread()
+0000000000002533	movq	%rbx, %rdi
+0000000000002536	callq	0xfb9bc                         ## symbol stub for: __ZNSt3__15mutex6unlockEv
+000000000000253b	movl	%r15d, %eax
+000000000000253e	addq	$0x28, %rsp
+0000000000002542	popq	%rbx
+0000000000002543	popq	%r12
+0000000000002545	popq	%r13
+0000000000002547	popq	%r14
+0000000000002549	popq	%r15
+000000000000254b	popq	%rbp
+000000000000254c	retq
+000000000000254d	jmp	0x25ce
+000000000000254f	movq	%rax, -0x30(%rbp)
+0000000000002553	movq	%r12, %rdi
+0000000000002556	callq	0xfba10                         ## symbol stub for: __ZdlPv
+000000000000255b	jmp	0x2561
+000000000000255d	movq	%rax, -0x30(%rbp)
+0000000000002561	movq	-0x30(%rbp), %rdi
+0000000000002565	callq	0xfba40                         ## symbol stub for: ___cxa_begin_catch
+000000000000256a	leaq	0x758(%r14), %rdi
+0000000000002571	testb	$0x1, 0x758(%r14)
+0000000000002579	jne	0x2587
+000000000000257b	movw	$0x0, 0x758(%r14)
+0000000000002585	jmp	0x259c
+0000000000002587	movq	0x768(%r14), %rax
+000000000000258e	movb	$0x0, (%rax)
+0000000000002591	movq	$0x0, 0x760(%r14)
+000000000000259c	leaq	0x118a67(%rip), %rsi            ## literal pool for: "Couldn't create CPU pipeline for Kinect v2"
+00000000000025a3	movl	$0x2a, %edx
+00000000000025a8	callq	__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE17__assign_externalEPKcm ## std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__assign_external(char const*, unsigned long)
+00000000000025ad	callq	0xfba46                         ## symbol stub for: ___cxa_end_catch
+00000000000025b2	movq	0x688(%r14), %r12
+00000000000025b9	jmp	0x2322
+00000000000025be	movq	%rax, %r15
+00000000000025c1	callq	0xfba46                         ## symbol stub for: ___cxa_end_catch
+00000000000025c6	jmp	0x25e0
+00000000000025c8	jmp	0x25ea
+00000000000025ca	jmp	0x25dd
+00000000000025cc	jmp	0x25ea
+00000000000025ce	movq	%rax, %r15
+00000000000025d1	movq	%r12, %rdi
+00000000000025d4	callq	0xfba10                         ## symbol stub for: __ZdlPv
+00000000000025d9	jmp	0x25e0
+00000000000025db	jmp	0x25dd
+00000000000025dd	movq	%rax, %r15
+00000000000025e0	movq	%r14, %rdi
+00000000000025e3	callq	__ZN11FreenectTOP19fn2_startEnumThreadEv ## FreenectTOP::fn2_startEnumThread()
+00000000000025e8	jmp	0x25f5
+00000000000025ea	movq	%rax, %rdi
+00000000000025ed	callq	___clang_call_terminate
+00000000000025f2	movq	%rax, %r15
+00000000000025f5	movq	%rbx, %rdi
+00000000000025f8	callq	0xfb9bc                         ## symbol stub for: __ZNSt3__15mutex6unlockEv
+00000000000025fd	movq	%r15, %rdi
+0000000000002600	callq	0xfb8e4                         ## symbol stub for: __Unwind_Resume
+0000000000002605	nop
 __ZN11FreenectTOP19fn1_startInitThreadEv:
-00000000000025f2	pushq	%rbp
-00000000000025f3	movq	%rsp, %rbp
-00000000000025f6	pushq	%r14
-00000000000025f8	pushq	%rbx
-00000000000025f9	subq	$0x10, %rsp
-00000000000025fd	movb	0x7b0(%rdi), %al
-0000000000002603	testb	$0x1, %al
-0000000000002605	jne	0x269e
-000000000000260b	movq	%rdi, %rbx
-000000000000260e	movb	$0x1, %al
-0000000000002610	xchgb	%al, 0x7b0(%rdi)
-0000000000002616	movl	$0x8, %edi
-000000000000261b	callq	0xfba08                         ## symbol stub for: __Znwm
-0000000000002620	movq	%rax, %r14
-0000000000002623	movq	%rax, %rdi
-0000000000002626	callq	0xfb966                         ## symbol stub for: __ZNSt3__115__thread_structC1Ev
-000000000000262b	movl	$0x10, %edi
-0000000000002630	callq	0xfba08                         ## symbol stub for: __Znwm
-0000000000002635	movq	%r14, (%rax)
-0000000000002638	movq	%rbx, 0x8(%rax)
-000000000000263c	movq	%rax, -0x18(%rbp)
-0000000000002640	leaq	__ZNSt3__114__thread_proxyB8ne190102INS_5tupleIJNS_10unique_ptrINS_15__thread_structENS_14default_deleteIS3_EEEEZN11FreenectTOP19fn1_startInitThreadEvE3$_0EEEEEPvSA_(%rip), %rdx ## void* std::__1::__thread_proxy[abi:ne190102]<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn1_startInitThread()::$_0>>(void*)
-0000000000002647	leaq	-0x20(%rbp), %rdi
-000000000000264b	xorl	%esi, %esi
-000000000000264d	movq	%rax, %rcx
-0000000000002650	callq	0xfbb7c                         ## symbol stub for: _pthread_create
-0000000000002655	testl	%eax, %eax
-0000000000002657	jne	0x26a7
-0000000000002659	leaq	-0x18(%rbp), %rdi
-000000000000265d	movq	$0x0, (%rdi)
-0000000000002664	callq	__ZNSt3__110unique_ptrINS_5tupleIJNS0_INS_15__thread_structENS_14default_deleteIS2_EEEEZN11FreenectTOP19fn2_startEnumThreadEvE3$_0EEENS3_IS8_EEED1B8ne190102Ev ## std::__1::unique_ptr<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>, std::__1::default_delete<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>>>::~unique_ptr[abi:ne190102]()
-0000000000002669	cmpq	$0x0, 0x7b8(%rbx)
-0000000000002671	jne	0x26b7
-0000000000002673	addq	$0x7b8, %rbx                    ## imm = 0x7B8
-000000000000267a	leaq	-0x20(%rbp), %rdi
-000000000000267e	movq	(%rdi), %rax
-0000000000002681	movq	%rax, (%rbx)
-0000000000002684	movq	$0x0, (%rdi)
-000000000000268b	callq	0xfb9d2                         ## symbol stub for: __ZNSt3__16threadD1Ev
-0000000000002690	cmpq	$0x0, (%rbx)
-0000000000002694	je	0x269e
-0000000000002696	movq	%rbx, %rdi
-0000000000002699	callq	0xfb9cc                         ## symbol stub for: __ZNSt3__16thread4joinEv
-000000000000269e	addq	$0x10, %rsp
-00000000000026a2	popq	%rbx
-00000000000026a3	popq	%r14
-00000000000026a5	popq	%rbp
-00000000000026a6	retq
-00000000000026a7	leaq	0x118a70(%rip), %rsi            ## literal pool for: "thread constructor failed"
-00000000000026ae	movl	%eax, %edi
-00000000000026b0	callq	0xfb99c                         ## symbol stub for: __ZNSt3__120__throw_system_errorEiPKc
-00000000000026b5	ud2
-00000000000026b7	callq	0xfb9f0                         ## symbol stub for: __ZSt9terminatev
-00000000000026bc	movq	%rax, %rbx
-00000000000026bf	movq	%r14, %rdi
-00000000000026c2	callq	0xfb96c                         ## symbol stub for: __ZNSt3__115__thread_structD1Ev
-00000000000026c7	jmp	0x26cc
-00000000000026c9	movq	%rax, %rbx
-00000000000026cc	movq	%r14, %rdi
-00000000000026cf	callq	0xfb9fc                         ## symbol stub for: __ZdlPv
-00000000000026d4	jmp	0x26e2
-00000000000026d6	movq	%rax, %rbx
-00000000000026d9	leaq	-0x18(%rbp), %rdi
-00000000000026dd	callq	__ZNSt3__110unique_ptrINS_5tupleIJNS0_INS_15__thread_structENS_14default_deleteIS2_EEEEZN11FreenectTOP19fn2_startEnumThreadEvE3$_0EEENS3_IS8_EEED1B8ne190102Ev ## std::__1::unique_ptr<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>, std::__1::default_delete<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>>>::~unique_ptr[abi:ne190102]()
-00000000000026e2	movq	%rbx, %rdi
-00000000000026e5	callq	0xfb8d0                         ## symbol stub for: __Unwind_Resume
+0000000000002606	pushq	%rbp
+0000000000002607	movq	%rsp, %rbp
+000000000000260a	pushq	%r14
+000000000000260c	pushq	%rbx
+000000000000260d	subq	$0x10, %rsp
+0000000000002611	movb	0x7b0(%rdi), %al
+0000000000002617	testb	$0x1, %al
+0000000000002619	jne	0x26b2
+000000000000261f	movq	%rdi, %rbx
+0000000000002622	movb	$0x1, %al
+0000000000002624	xchgb	%al, 0x7b0(%rdi)
+000000000000262a	movl	$0x8, %edi
+000000000000262f	callq	0xfba1c                         ## symbol stub for: __Znwm
+0000000000002634	movq	%rax, %r14
+0000000000002637	movq	%rax, %rdi
+000000000000263a	callq	0xfb97a                         ## symbol stub for: __ZNSt3__115__thread_structC1Ev
+000000000000263f	movl	$0x10, %edi
+0000000000002644	callq	0xfba1c                         ## symbol stub for: __Znwm
+0000000000002649	movq	%r14, (%rax)
+000000000000264c	movq	%rbx, 0x8(%rax)
+0000000000002650	movq	%rax, -0x18(%rbp)
+0000000000002654	leaq	__ZNSt3__114__thread_proxyB8ne190102INS_5tupleIJNS_10unique_ptrINS_15__thread_structENS_14default_deleteIS3_EEEEZN11FreenectTOP19fn1_startInitThreadEvE3$_0EEEEEPvSA_(%rip), %rdx ## void* std::__1::__thread_proxy[abi:ne190102]<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn1_startInitThread()::$_0>>(void*)
+000000000000265b	leaq	-0x20(%rbp), %rdi
+000000000000265f	xorl	%esi, %esi
+0000000000002661	movq	%rax, %rcx
+0000000000002664	callq	0xfbb90                         ## symbol stub for: _pthread_create
+0000000000002669	testl	%eax, %eax
+000000000000266b	jne	0x26bb
+000000000000266d	leaq	-0x18(%rbp), %rdi
+0000000000002671	movq	$0x0, (%rdi)
+0000000000002678	callq	__ZNSt3__110unique_ptrINS_5tupleIJNS0_INS_15__thread_structENS_14default_deleteIS2_EEEEZN11FreenectTOP19fn2_startEnumThreadEvE3$_0EEENS3_IS8_EEED1B8ne190102Ev ## std::__1::unique_ptr<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>, std::__1::default_delete<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>>>::~unique_ptr[abi:ne190102]()
+000000000000267d	cmpq	$0x0, 0x7b8(%rbx)
+0000000000002685	jne	0x26cb
+0000000000002687	addq	$0x7b8, %rbx                    ## imm = 0x7B8
+000000000000268e	leaq	-0x20(%rbp), %rdi
+0000000000002692	movq	(%rdi), %rax
+0000000000002695	movq	%rax, (%rbx)
+0000000000002698	movq	$0x0, (%rdi)
+000000000000269f	callq	0xfb9e6                         ## symbol stub for: __ZNSt3__16threadD1Ev
+00000000000026a4	cmpq	$0x0, (%rbx)
+00000000000026a8	je	0x26b2
+00000000000026aa	movq	%rbx, %rdi
+00000000000026ad	callq	0xfb9e0                         ## symbol stub for: __ZNSt3__16thread4joinEv
+00000000000026b2	addq	$0x10, %rsp
+00000000000026b6	popq	%rbx
+00000000000026b7	popq	%r14
+00000000000026b9	popq	%rbp
+00000000000026ba	retq
+00000000000026bb	leaq	0x118aa0(%rip), %rsi            ## literal pool for: "thread constructor failed"
+00000000000026c2	movl	%eax, %edi
+00000000000026c4	callq	0xfb9b0                         ## symbol stub for: __ZNSt3__120__throw_system_errorEiPKc
+00000000000026c9	ud2
+00000000000026cb	callq	0xfba04                         ## symbol stub for: __ZSt9terminatev
+00000000000026d0	movq	%rax, %rbx
+00000000000026d3	movq	%r14, %rdi
+00000000000026d6	callq	0xfb980                         ## symbol stub for: __ZNSt3__115__thread_structD1Ev
+00000000000026db	jmp	0x26e0
+00000000000026dd	movq	%rax, %rbx
+00000000000026e0	movq	%r14, %rdi
+00000000000026e3	callq	0xfba10                         ## symbol stub for: __ZdlPv
+00000000000026e8	jmp	0x26f6
+00000000000026ea	movq	%rax, %rbx
+00000000000026ed	leaq	-0x18(%rbp), %rdi
+00000000000026f1	callq	__ZNSt3__110unique_ptrINS_5tupleIJNS0_INS_15__thread_structENS_14default_deleteIS2_EEEEZN11FreenectTOP19fn2_startEnumThreadEvE3$_0EEENS3_IS8_EEED1B8ne190102Ev ## std::__1::unique_ptr<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>, std::__1::default_delete<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, FreenectTOP::fn2_startEnumThread()::$_0>>>::~unique_ptr[abi:ne190102]()
+00000000000026f6	movq	%rbx, %rdi
+00000000000026f9	callq	0xfb8e4                         ## symbol stub for: __Unwind_Resume
