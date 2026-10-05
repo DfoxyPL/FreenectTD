@@ -70,7 +70,7 @@ private:
     
     std::atomic<bool>                       fn2_deviceAvailable{false};
     std::thread                             fn2_enumThread;
-    std::atomic<bool>                       fn2_enumThreadRunning;
+    std::atomic<bool>                       fn2_enumThreadRunning{false};
 
     // V2 background init members
     std::atomic<bool>                       fn2_InitInProgress{false};

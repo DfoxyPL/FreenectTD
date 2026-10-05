@@ -591,6 +591,14 @@ bool FreenectTOP::fn2_initDevice() {
         LOG("[FreenectTOP] fn2_initDevice: (end) already initialized");
         return true;
     }
+    // Pause background enumeration while opening the device: it creates its own
+    // libusb context and opens the Kinect every 100 ms, which can race with
+    // libusb_open/libusb_reset_device in openDevice. Resume it on every exit path.
+    fn2_stopEnumThread();
+    struct EnumThreadResumer {
+        FreenectTOP* self;
+        ~EnumThreadResumer() { self->fn2_startEnumThread(); }
+    } enumThreadResumer{this};
     fn2_ctx = new libfreenect2::Freenect2();
     LOG(std::string("[FreenectTOP] fn2_initDevice: fn2_ctx after = ") + std::to_string(reinterpret_cast<uintptr_t>(fn2_ctx)));
     if (fn2_ctx->enumerateDevices() == 0) {
@@ -615,11 +623,8 @@ bool FreenectTOP::fn2_initDevice() {
         errorString.clear();
         errorString = "Failed to open Kinect v2 device";
         delete fn2_device;
-        if (fn2_pipeline) {
-            delete fn2_pipeline;
-            fn2_pipeline = nullptr;
-            LOG("[FreenectTOP] fn2_initDevice: fn2_pipeline deleted and set to nullptr");
-        }
+        // libfreenect2 deletes the pipeline itself when openDevice fails
+        fn2_pipeline = nullptr;
         if (fn2_ctx) {
             delete fn2_ctx;
             fn2_ctx = nullptr;
@@ -639,11 +644,9 @@ bool FreenectTOP::fn2_initDevice() {
         errorString = "Failed to start Kinect v2 device";
         delete fn2_device;
         LOG("[FreenectTOP] fn2_initDevice: fn2_device deleted");
-        if (fn2_pipeline) {
-            delete fn2_pipeline;
-            fn2_pipeline = nullptr;
-            LOG("[FreenectTOP] fn2_initDevice: fn2_pipeline deleted and set to nullptr");
-        }
+        // The pipeline is owned by the opened libfreenect2 device, which
+        // deleting fn2_ctx below destroys along with it
+        fn2_pipeline = nullptr;
         if (fn2_ctx) {
             delete fn2_ctx;
             fn2_ctx = nullptr;
