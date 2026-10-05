@@ -16,6 +16,9 @@ ARCH=x86_64
 LIBUSB_VER=1.0.29
 LIBFREENECT_VER=0.7.5
 LIBFREENECT2_VER=0.2.0
+# The bundled headers (include/headers/libfreenect2) come from libfreenect2 master,
+# whose Freenect2Device vtable differs from the v0.2.0 tag. Build the same commit.
+LIBFREENECT2_REF=fd64c5d9b214df6f6a55b4419357e51083f15d93
 LIBJPEG_TURBO_VER=3.0.4
 
 mkdir -p "$WORK" "$PREFIX"
@@ -81,14 +84,20 @@ fi
 # ----------------------------------------------------------- libfreenect2
 # Same feature set as the bundled arm64 build (OpenCL, CPU depth) minus OpenGL,
 # which the plugin doesn't use, and with TurboJPEG instead of VideoToolbox.
-if [ ! -f "$WORK/libfreenect2-build-tj/lib/libfreenect2.a" ]; then
+if [ ! -f "$WORK/libfreenect2-build-master/lib/libfreenect2.a" ]; then
     curl -fsSL -o libfreenect2.tar.gz \
-        "https://github.com/OpenKinect/libfreenect2/archive/refs/tags/v${LIBFREENECT2_VER}.tar.gz"
-    rm -rf "libfreenect2-${LIBFREENECT2_VER}" && tar xzf libfreenect2.tar.gz
+        "https://github.com/OpenKinect/libfreenect2/archive/${LIBFREENECT2_REF}.tar.gz"
+    FN2_SRC="libfreenect2-${LIBFREENECT2_REF}"
+    rm -rf "$FN2_SRC" && tar xzf libfreenect2.tar.gz
+    # Fail fast if the library sources don't match the headers the plugin compiles against
+    for h in libfreenect2.hpp frame_listener.hpp frame_listener_impl.h packet_pipeline.h \
+             registration.h color_settings.h led_settings.h; do
+        cmp "$ROOT/include/headers/libfreenect2/$h" "$FN2_SRC/include/libfreenect2/$h"
+    done
     # libfreenect2 always prefers VideoToolbox on Apple; make it optional.
     perl -pi -e 's/IF\(VIDEOTOOLBOX_LIBRARY\)/IF(VIDEOTOOLBOX_LIBRARY AND NOT FNTD_DISABLE_VT)/; s/ENDIF\(VIDEOTOOLBOX_LIBRARY\)/ENDIF()/' \
-        "libfreenect2-${LIBFREENECT2_VER}/CMakeLists.txt"
-    cmake -S "libfreenect2-${LIBFREENECT2_VER}" -B libfreenect2-build-tj "${CMAKE_COMMON[@]}" \
+        "$FN2_SRC/CMakeLists.txt"
+    cmake -S "$FN2_SRC" -B libfreenect2-build-master "${CMAKE_COMMON[@]}" \
         -DBUILD_SHARED_LIBS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_OPENNI2_DRIVER=OFF \
         -DENABLE_CXX11=ON -DENABLE_OPENGL=OFF -DENABLE_OPENCL=ON -DENABLE_CUDA=OFF \
         -DENABLE_VAAPI=OFF -DENABLE_TEGRAJPEG=OFF -DENABLE_PROFILING=OFF \
@@ -101,7 +110,7 @@ if [ ! -f "$WORK/libfreenect2-build-tj/lib/libfreenect2.a" ]; then
         -DLibUSB_LIBRARY="$PREFIX/lib/libusb-1.0.a" 2>&1 | tee libfreenect2-configure.log
     grep -Eq "TurboJPEG +yes" libfreenect2-configure.log
     grep -Eq "VideoToolbox +no" libfreenect2-configure.log
-    cmake --build libfreenect2-build-tj --target freenect2 -j"$(sysctl -n hw.ncpu)"
+    cmake --build libfreenect2-build-master --target freenect2 -j"$(sysctl -n hw.ncpu)"
 fi
 
 # --------------------------------------------------------- merge (lipo)
@@ -122,7 +131,7 @@ X86_FN="$(find "$WORK/libfreenect-build" -name 'libfreenect.a' | head -n1)"
 # links it without needing another library entry.
 X86_FN2="$WORK/libfreenect2-x86_64-with-turbojpeg.a"
 libtool -static -o "$X86_FN2" \
-    "$(find "$WORK/libfreenect2-build-tj" -name 'libfreenect2.a' | head -n1)" \
+    "$(find "$WORK/libfreenect2-build-master" -name 'libfreenect2.a' | head -n1)" \
     "$PREFIX/lib/libturbojpeg.a"
 
 merge "$LIBS/libusb_${LIBUSB_VER}.a"             "$PREFIX/lib/libusb-1.0.a"
