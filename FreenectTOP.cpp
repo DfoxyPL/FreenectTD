@@ -553,8 +553,10 @@ void FreenectTOP::fn2_startEnumThread() {
     fn2_enumThreadRunning = true;
     LOG("[FreenectTOP] fn2_startEnumThread: fn2_enumThreadRunning after = " + std::to_string(fn2_enumThreadRunning.load()));
     fn2_enumThread = std::thread([this]() {
+        // One context for the thread's lifetime: creating and destroying a libusb
+        // context every 100 ms fails with LIBUSB_ERROR_OTHER on macOS
+        libfreenect2::Freenect2 ctx;
         while (fn2_enumThreadRunning.load()) {
-            libfreenect2::Freenect2 ctx;
             fn2_deviceAvailable = (ctx.enumerateDevices() > 0);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
@@ -868,6 +870,14 @@ void FreenectTOP::fn2_execute(TD::TOP_Output* output, const TD::OP_Inputs* input
 
     // Always attempt initialization if device is null
     if (!fn2_device) {
+        // Initialization blocks the cook (opening retries take up to ~1 s), so
+        // don't retry on every frame while the device keeps failing to open
+        auto now = std::chrono::steady_clock::now();
+        if (now - fn2_lastInitAttempt < std::chrono::seconds(2)) {
+            uploadFallbackBuffer();
+            return;
+        }
+        fn2_lastInitAttempt = now;
         LOG("[FreenectTOP] executeV2: fn2_device is null, attempting initialization");
         fn2_startInitThread();
         if (!fn2_InitSuccess.load()) {

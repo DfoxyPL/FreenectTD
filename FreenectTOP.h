@@ -76,6 +76,7 @@ private:
     std::atomic<bool>                       fn2_InitInProgress{false};
     //std::atomic<bool>                       fn2_InitDone{false};
     std::atomic<bool>                       fn2_InitSuccess{false};
+    std::chrono::steady_clock::time_point   fn2_lastInitAttempt{};
     std::thread                             fn2_InitThread;
     
     // Add declarations for v2 enumeration thread helpers

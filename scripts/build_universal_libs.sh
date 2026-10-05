@@ -97,6 +97,14 @@ if [ ! -f "$WORK/libfreenect2-build-master/lib/libfreenect2.a" ]; then
     # libfreenect2 always prefers VideoToolbox on Apple; make it optional.
     perl -pi -e 's/IF\(VIDEOTOOLBOX_LIBRARY\)/IF(VIDEOTOOLBOX_LIBRARY AND NOT FNTD_DISABLE_VT)/; s/ENDIF\(VIDEOTOOLBOX_LIBRARY\)/ENDIF()/' \
         "$FN2_SRC/CMakeLists.txt"
+    # openDevice() resets the Kinect before claiming its interfaces. On some
+    # Intel Macs/Hackintoshes that reset re-enumerates the device under a new
+    # address, leaving a stale handle and failing with LIBUSB_ERROR_ACCESS on
+    # IrInterfaceId. Skip the reset unless FNTD_USB_RESET is set in the environment.
+    perl -0pi -e 's/#include <libfreenect2\/libfreenect2.hpp>/#include <libfreenect2\/libfreenect2.hpp>\n#include <cstdlib>/; s/if\(attempting_reset\)/if(attempting_reset && std::getenv("FNTD_USB_RESET") != NULL)/' \
+        "$FN2_SRC/src/libfreenect2.cpp"
+    grep -q 'std::getenv("FNTD_USB_RESET")' "$FN2_SRC/src/libfreenect2.cpp"
+    grep -q '#include <cstdlib>' "$FN2_SRC/src/libfreenect2.cpp"
     cmake -S "$FN2_SRC" -B libfreenect2-build-master "${CMAKE_COMMON[@]}" \
         -DBUILD_SHARED_LIBS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_OPENNI2_DRIVER=OFF \
         -DENABLE_CXX11=ON -DENABLE_OPENGL=OFF -DENABLE_OPENCL=ON -DENABLE_CUDA=OFF \
