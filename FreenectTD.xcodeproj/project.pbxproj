@@ -367,7 +367,7 @@
 		81E3B9672DC3687500B0413C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = "arm64 x86_64";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -380,7 +380,7 @@
 					"FNTD_DEBUG=2",
 					"FNTD_PROFILE=0",
 					"$(inherited)",
-					"TD_VERSION=2025",
+					"TD_VERSION=$(FNTD_TD_VERSION)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -399,6 +399,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0.1;
+				FNTD_TD_VERSION = 2025;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_BUNDLE_IDENTIFIER = ee.marte.FreenectTD.TOP;
@@ -413,7 +414,7 @@
 		81E3B9682DC3687500B0413C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = "arm64 x86_64";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -425,7 +426,7 @@
 					"FREENECTTOP_VERSION=\"\\\"$(MARKETING_VERSION)\\\"\"",
 					"FNTD_PROFILE=0",
 					"FNTD_DEBUG=0",
-					"TD_VERSION=2025",
+					"TD_VERSION=$(FNTD_TD_VERSION)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -444,6 +445,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0.1;
+				FNTD_TD_VERSION = 2025;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_BUNDLE_IDENTIFIER = ee.marte.FreenectTD.TOP;
