@@ -1,2 +1,2 @@
-UUID: E0246188-2D52-37C5-AC6C-8CB8C92EF8B4 (x86_64) build/td2023/Release/FreenectTOP.plugin/Contents/MacOS/FreenectTOP
-UUID: 9761691D-4E65-3024-9AE3-5589BFF7B35A (arm64) build/td2023/Release/FreenectTOP.plugin/Contents/MacOS/FreenectTOP
+UUID: 8E3C1CAE-6CAB-3378-8791-0212AAA82F64 (x86_64) build/td2023/Release/FreenectTOP.plugin/Contents/MacOS/FreenectTOP
+UUID: 776FC673-7F52-3800-880C-39DE220FE3C4 (arm64) build/td2023/Release/FreenectTOP.plugin/Contents/MacOS/FreenectTOP
