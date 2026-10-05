@@ -53,6 +53,14 @@ jobs:
           find build_deps -name config.log -path '*libusb*' -exec tail -n 200 {} \; > "$D/libusb-config.log" 2>/dev/null || true
           find build_deps -name CMakeError.log -o -name CMakeConfigureLog.yaml | head -3 | xargs -I{} tail -n 150 {} > "$D/cmake-errors.log" 2>/dev/null || true
           echo "${{ job.status }} $GITHUB_SHA" > "$D/status.txt"
+          BIN=build/td${{ matrix.td_version }}/Release/FreenectTOP.plugin/Contents/MacOS/FreenectTOP
+          if [ -f "$BIN" ]; then
+            dwarfdump --uuid "$BIN" > "$D/uuid.txt" 2>&1 || true
+            nm -arch x86_64 -n "$BIN" > "$D/nm.x86_64.txt" 2>&1 || true
+            otool -arch x86_64 -tV "$BIN" > /tmp/dis.txt 2>&1 || true
+            awk '/^__ZN11FreenectTOP14fn2_initDeviceEv:/{p=1} p&&/^__ZN11FreenectTOP18fn2_cleanupDeviceEv:|^__ZN11FreenectTOP19fn2_startInitThreadEv:/{exit} p' /tmp/dis.txt > "$D/fn2_initDevice.x86_64.txt"
+            wc -l /tmp/dis.txt "$D"/*.txt
+          fi
           cd ci-logs-out
           git init -q -b ci-logs
           git config user.name ci && git config user.email ci@users.noreply.github.com
