@@ -16,6 +16,7 @@ ARCH=x86_64
 LIBUSB_VER=1.0.29
 LIBFREENECT_VER=0.7.5
 LIBFREENECT2_VER=0.2.0
+LIBJPEG_TURBO_VER=3.0.4
 
 mkdir -p "$WORK" "$PREFIX"
 cd "$WORK"
@@ -62,23 +63,45 @@ if [ ! -f "$WORK/libfreenect-build/lib/libfreenect.a" ]; then
     cmake --build libfreenect-build --target freenectstatic -j"$(sysctl -n hw.ncpu)"
 fi
 
+# --------------------------------------------------------- libjpeg-turbo
+# Software JPEG decoder for the Kinect v2 color stream on Intel. libfreenect2's
+# VideoToolbox decoder has no error handling and crashes on Macs (and
+# Hackintoshes) where hardware JPEG decoding is unavailable.
+if [ ! -f "$PREFIX/lib/libturbojpeg.a" ]; then
+    curl -fsSL -o libjpeg-turbo.tar.gz \
+        "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/${LIBJPEG_TURBO_VER}/libjpeg-turbo-${LIBJPEG_TURBO_VER}.tar.gz"
+    rm -rf "libjpeg-turbo-${LIBJPEG_TURBO_VER}" && tar xzf libjpeg-turbo.tar.gz
+    cmake -S "libjpeg-turbo-${LIBJPEG_TURBO_VER}" -B libjpeg-turbo-build "${CMAKE_COMMON[@]}" \
+        -DCMAKE_SYSTEM_PROCESSOR=x86_64 -DCMAKE_INSTALL_LIBDIR=lib \
+        -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DWITH_TURBOJPEG=ON -DWITH_JAVA=OFF
+    cmake --build libjpeg-turbo-build -j"$(sysctl -n hw.ncpu)"
+    cmake --install libjpeg-turbo-build
+fi
+
 # ----------------------------------------------------------- libfreenect2
-# Same feature set as the bundled arm64 build (OpenCL + VideoToolbox, CPU depth),
-# minus OpenGL and TurboJPEG which the plugin neither uses nor links.
-if [ ! -f "$WORK/libfreenect2-build/lib/libfreenect2.a" ]; then
+# Same feature set as the bundled arm64 build (OpenCL, CPU depth) minus OpenGL,
+# which the plugin doesn't use, and with TurboJPEG instead of VideoToolbox.
+if [ ! -f "$WORK/libfreenect2-build-tj/lib/libfreenect2.a" ]; then
     curl -fsSL -o libfreenect2.tar.gz \
         "https://github.com/OpenKinect/libfreenect2/archive/refs/tags/v${LIBFREENECT2_VER}.tar.gz"
     rm -rf "libfreenect2-${LIBFREENECT2_VER}" && tar xzf libfreenect2.tar.gz
-    cmake -S "libfreenect2-${LIBFREENECT2_VER}" -B libfreenect2-build "${CMAKE_COMMON[@]}" \
+    # libfreenect2 always prefers VideoToolbox on Apple; make it optional.
+    perl -pi -e 's/IF\(VIDEOTOOLBOX_LIBRARY\)/IF(VIDEOTOOLBOX_LIBRARY AND NOT FNTD_DISABLE_VT)/; s/ENDIF\(VIDEOTOOLBOX_LIBRARY\)/ENDIF()/' \
+        "libfreenect2-${LIBFREENECT2_VER}/CMakeLists.txt"
+    cmake -S "libfreenect2-${LIBFREENECT2_VER}" -B libfreenect2-build-tj "${CMAKE_COMMON[@]}" \
         -DBUILD_SHARED_LIBS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_OPENNI2_DRIVER=OFF \
         -DENABLE_CXX11=ON -DENABLE_OPENGL=OFF -DENABLE_OPENCL=ON -DENABLE_CUDA=OFF \
         -DENABLE_VAAPI=OFF -DENABLE_TEGRAJPEG=OFF -DENABLE_PROFILING=OFF \
-        -DCMAKE_DISABLE_FIND_PACKAGE_TurboJPEG=ON \
+        -DFNTD_DISABLE_VT=ON \
+        -DTurboJPEG_INCLUDE_DIRS="$PREFIX/include" \
+        -DTurboJPEG_LIBRARIES="$PREFIX/lib/libturbojpeg.a" \
         -DLibUSB_INCLUDE_DIRS="$PREFIX/include/libusb-1.0" \
         -DLibUSB_LIBRARIES="$PREFIX/lib/libusb-1.0.a" \
         -DLibUSB_INCLUDE_DIR="$PREFIX/include/libusb-1.0" \
-        -DLibUSB_LIBRARY="$PREFIX/lib/libusb-1.0.a"
-    cmake --build libfreenect2-build --target freenect2 -j"$(sysctl -n hw.ncpu)"
+        -DLibUSB_LIBRARY="$PREFIX/lib/libusb-1.0.a" 2>&1 | tee libfreenect2-configure.log
+    grep -Eq "TurboJPEG +yes" libfreenect2-configure.log
+    grep -Eq "VideoToolbox +no" libfreenect2-configure.log
+    cmake --build libfreenect2-build-tj --target freenect2 -j"$(sysctl -n hw.ncpu)"
 fi
 
 # --------------------------------------------------------- merge (lipo)
@@ -95,7 +118,12 @@ merge() {
 }
 
 X86_FN="$(find "$WORK/libfreenect-build" -name 'libfreenect.a' | head -n1)"
-X86_FN2="$(find "$WORK/libfreenect2-build" -name 'libfreenect2.a' | head -n1)"
+# Fold libturbojpeg into the x86_64 libfreenect2 archive so the Xcode project
+# links it without needing another library entry.
+X86_FN2="$WORK/libfreenect2-x86_64-with-turbojpeg.a"
+libtool -static -o "$X86_FN2" \
+    "$(find "$WORK/libfreenect2-build-tj" -name 'libfreenect2.a' | head -n1)" \
+    "$PREFIX/lib/libturbojpeg.a"
 
 merge "$LIBS/libusb_${LIBUSB_VER}.a"             "$PREFIX/lib/libusb-1.0.a"
 merge "$LIBS/libfreenect_${LIBFREENECT_VER}.a"   "$X86_FN"
