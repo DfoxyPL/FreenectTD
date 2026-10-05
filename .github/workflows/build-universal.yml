@@ -75,6 +75,11 @@ jobs:
           nm -arch x86_64 "$BIN" | grep -E "[Tt] _tjDecompress2|VTRgbPacketProcessor|TurboJpegRgbPacketProcessor" | head || true
           ! nm -arch x86_64 -u "$BIN" | grep -q "_tj"
           ! nm -arch x86_64 "$BIN" | grep -q VTRgbPacketProcessor
+          # Crash-report helpers: UUIDs and x86_64 disassembly of fn2_initDevice
+          mkdir -p ci-logs
+          dwarfdump --uuid "$BIN" > ci-logs/uuid.log
+          otool -arch x86_64 -tV -p '__ZN11FreenectTOP14fn2_initDeviceEv' "$BIN" | head -n 600 > ci-logs/fn2_initDevice.x86_64.log || true
+          nm -arch x86_64 -n "$BIN" | grep -i " t \| T " | head -n 400 > ci-logs/symbols.x86_64.log || true
 
       - name: Upload plugin
         uses: actions/upload-artifact@v4
