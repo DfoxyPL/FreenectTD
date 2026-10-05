@@ -2,7 +2,11 @@ name: Build universal plugin (Intel + Apple Silicon)
 
 on:
   push:
+    branches-ignore: [ci-logs]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -24,15 +28,41 @@ jobs:
           key: deps-x86_64-${{ hashFiles('scripts/build_universal_libs.sh') }}
 
       - name: Build universal static libraries
-        run: ./scripts/build_universal_libs.sh
+        run: |
+          mkdir -p ci-logs
+          set -o pipefail
+          ./scripts/build_universal_libs.sh 2>&1 | tee ci-logs/deps.log
 
       - name: Build FreenectTOP.plugin
         run: |
+          set -o pipefail
           xcodebuild -project FreenectTD.xcodeproj -target FreenectTOP \
             -configuration Release \
             FNTD_TD_VERSION=${{ matrix.td_version }} \
             SYMROOT="$PWD/build/td${{ matrix.td_version }}" \
-            ONLY_ACTIVE_ARCH=NO
+            ONLY_ACTIVE_ARCH=NO 2>&1 | tee ci-logs/xcodebuild.log
+
+      # Public repos hide job logs from signed-out viewers; publish the tail of
+      # the logs to a ci-logs branch so they can be read via raw.githubusercontent.com
+      - name: Publish logs
+        if: always()
+        run: |
+          D=ci-logs-out/td${{ matrix.td_version }}
+          mkdir -p "$D"
+          for f in ci-logs/*.log; do [ -f "$f" ] && tail -n 400 "$f" > "$D/$(basename "$f")"; done
+          find build_deps -name config.log -path '*libusb*' -exec tail -n 200 {} \; > "$D/libusb-config.log" 2>/dev/null || true
+          find build_deps -name CMakeError.log -o -name CMakeConfigureLog.yaml | head -3 | xargs -I{} tail -n 150 {} > "$D/cmake-errors.log" 2>/dev/null || true
+          echo "${{ job.status }} $GITHUB_SHA" > "$D/status.txt"
+          cd ci-logs-out
+          git init -q -b ci-logs
+          git config user.name ci && git config user.email ci@users.noreply.github.com
+          git add -A && git commit -qm "logs td${{ matrix.td_version }} $GITHUB_SHA"
+          for i in 1 2 3; do
+            git fetch -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-logs 2>/dev/null \
+              && git rebase -q -X theirs FETCH_HEAD 2>/dev/null || true
+            git push -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:ci-logs && break
+            sleep 5
+          done
 
       - name: Verify architectures
         run: |
